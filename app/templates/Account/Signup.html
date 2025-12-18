@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="account_card">
+    <h1>Signup</h1>
+    <form  method="post">
+        {% csrf_token %}
+        <h2>Username</h2>
+        {{ form.username }}
+
+        <h2>Password</h2>
+        {{ form.password1 }}
+
+        <h2>Confirm Password</h2>
+        {{ form.password2 }}
+
+        <button type="submit" class="account_btn dly_btn">Submit</button>
+        
+    </form>
+    <p><a href="{% url 'signup_admin' %}" class="link">Make an Admin Account Here</a></p>
+</div>
+{% endblock content %}

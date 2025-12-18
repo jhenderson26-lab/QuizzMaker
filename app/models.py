@@ -10,10 +10,13 @@ class Tags(models.Model):
     
     
 class Questions(models.Model):
-    q1 = models.CharField(max_length=255, default=False)
-    q2 = models.CharField(max_length=255, default=False)
-    q3 = models.CharField(max_length=255, default=False)
-    q4 = models.CharField(max_length=255, default=False) 
+    title= models.CharField(max_length=300)
+    pic = models.ImageField(upload_to='images/', blank=True, null=True)
+    time = models.IntegerField()
+    q1 = models.CharField(max_length=250, default=False)
+    q2 = models.CharField(max_length=250, default=False)
+    q3 = models.CharField(max_length=250, default=False)
+    q4 = models.CharField(max_length=250, default=False) 
     
 class Quizzes(models.Model):
     title = models.CharField(max_length=200)
@@ -31,4 +34,4 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.user.username
+        return f'User: {self.user.username} Quizzes: {self.quizzes.title} Points: {self.points}'
