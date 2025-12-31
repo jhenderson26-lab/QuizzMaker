@@ -31,9 +31,10 @@ class Quizzes(models.Model):
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    quizzes = models.ForeignKey(Quizzes, on_delete=models.CASCADE, related_name='user_profiles')
+    quizzes = models.ForeignKey(Quizzes, on_delete=models.CASCADE, related_name='user_profiles', blank=True, null=True)
     points = models.IntegerField(default=0)
     bio = models.TextField(blank=True, null=True)
+    pic = models.ImageField(upload_to='images/', blank=True, null=True)
 
     def __str__(self):
-        return f'User: {self.user.username} Quizzes: {self.quizzes.title} Points: {self.points}'
+        return f'User: {self.user.username} Points: {self.points}'

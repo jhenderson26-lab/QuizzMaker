@@ -11,14 +11,37 @@
         <title>Quizma</title>
     </head>
     <body>
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">Register</a></li>
-            <li><a href="{% url 'quizs' %}">Quizzes</a></li>
-        </ul>
+                <section class="menuButtonSection">
+  <button type="button" class="menuButton">
+    <img src="{% static 'images/white_bars.png' %}" alt="Menu Button" class="menuIcon">
+  </button>
+</section>
+
+<aside>
+  <nav class="controls nav">
+    <img src="{% if info.pic %}{{ info.pic.url }}{% else %}{% static 'images/profile.png' %}{% endif %}" alt="Profile Picture" class="profile-pic">
+    <p class="username">{{user.username}}</p>
+    <p class="points">Points: {{info.points}}</p>
+    
+    <li class="place"><a class="home" href="{% url 'home' %}">Home</a></li>
+    <li class="place"><a class="elseM" href="{% url 'signup' %}">SignUp</a></li>
+    {% if user.id == None %}
+    <li class="place"><a class="elseM" href="{% url 'login' %}">Login</a></li>
+    {% else %}
+    <li class="place"><a class="elseM" href="{% url 'logout' %}">Logout</a></li>
+    {% endif %}
+    <li class="place"><a class="elseM" href="{% url 'quizs' %}">Quizzes</a></li>
+
+
+  </nav>
+</aside> 
         <div class="container">
             {% block content %}
             {% endblock content %}
+
+            <!-- {% for tag in tags %}
+                <span class="tag">{{ tag.name }}</span>
+            {% endfor %} -->
+            <script type="module" src="{% static 'JS/script.js' %}"></script>
     </body>
 </html>
